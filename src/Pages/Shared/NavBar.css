@@ -2,20 +2,36 @@
     background-color: #375570;
     color: white;
 }
-.bike-picker{
+
+.bike-picker {
     background-color: white;
 }
-.bike{
+
+.bike {
     color: #375570;
 }
-.picker{
+
+.picker {
     color: #c92a52;
 }
-.nav-link{
+
+.nav-link {
     margin: 0 10px
 }
-.nav-link:hover{
+
+.nav-link:hover {
     background-color: #c92a52;
     border-radius: 10px;
     transition: 0.5s;
+}
+
+.primary-bg {
+    background-color: #375570;
+}
+
+.danger-bg{
+    background-color: #c92a52;
+}
+.aside{
+    height: 100vh;
 }

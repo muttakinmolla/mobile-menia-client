@@ -1,0 +1,10 @@
+.primary-bg {
+    background-color: #375570;
+    color: white;
+}
+
+.primary-bg:hover {
+    background-color: #c92a52;
+    color: white;
+    transition: 0.5s;
+}

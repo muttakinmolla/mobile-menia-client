@@ -1,0 +1,21 @@
+.nav-bar {
+    background-color: #375570;
+    color: white;
+}
+.bike-picker{
+    background-color: white;
+}
+.bike{
+    color: #375570;
+}
+.picker{
+    color: #c92a52;
+}
+.nav-link{
+    margin: 0 10px
+}
+.nav-link:hover{
+    background-color: #c92a52;
+    border-radius: 10px;
+    transition: 0.5s;
+}

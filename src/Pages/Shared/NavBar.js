@@ -1,0 +1,54 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './NavBar.css';
+
+const NavBar = () => {
+    return (
+        <div className='nav-bar'>
+            <nav className="container navbar navbar-expand-lg navbar-light ">
+                <div className="container-fluid py-1">
+                    <Link className="navbar-brand bike-picker px-3 rounded fw-bold" to="/"><span className='bike'>BIKE</span> <span className='picker'>PICKER</span></Link>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className='w-100 d-lg-block d-md-block d-none'>
+                        {/* <marquee className='m-auto' direction="right">Choose your bike from here. Thousand of bike collection is here. just choose and buy.</marquee> */}
+                    </div>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" aria-current="page" to="/">Home</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/">Blog</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/login">login</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/register">Register</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-white" to="/dashboard">Dashboard</Link>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle text-white" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </Link>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><Link className="dropdown-item" to="/">Action</Link></li>
+                                    <li><Link className="dropdown-item" to="/">Another action</Link></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><Link className="dropdown-item" to="/">Something else here</Link></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    );
+};
+
+export default NavBar;

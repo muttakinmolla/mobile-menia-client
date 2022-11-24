@@ -1,8 +1,21 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import './AddCategory.css';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Loader from '../../Shared/Loader/Loader';
 
 const AddCategory = () => {
+
+    const { data: categories, isLoading, refetch } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/categories')
+            const data = await res.json();
+            return data;
+        }
+    })
 
     const handleAddCategory = (e) => {
         e.preventDefault();
@@ -25,11 +38,15 @@ const AddCategory = () => {
                 if (data.acknowledged) {
                     toast.success('category is added successfully');
                     form.reset();
+                    refetch();
                 }
 
             })
-
     }
+    if (isLoading) {
+        return <Loader></Loader>
+    }
+
     return (
         <div>
             <h3 className='text-center'>Add a category</h3>
@@ -44,7 +61,28 @@ const AddCategory = () => {
                     </form>
                 </div>
                 <div className="col-lg-8">
-                    table
+                    <table className="table table-hover">
+                        <thead className='text-center'>
+                            <tr>
+                                <th scope="col">Sl.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                categories.map((category, index) => <tr className='text-center' key={index}>
+                                    <th scope="row">{index + 1}</th>
+                                    <td>{category.name}</td>
+                                    <td>
+                                        <FontAwesomeIcon className='text-danger' icon={faTrash}>
+
+                                        </FontAwesomeIcon>
+                                    </td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

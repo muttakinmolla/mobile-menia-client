@@ -14,9 +14,9 @@ const DashboardLayout = () => {
                         <ul className='mt-lg-4'>
                             <li className='pt-2 pb-2 dashboard-li'><Link to='/dashboard'>dashboard</Link></li>
                             <li className='pt-3 pb-2 dashboard-li'><Link to='/dashboard/addCategory'>Add Category</Link></li>
+                            <li className='pt-3 pb-2 dashboard-li'><Link to='/dashboard/allProduct'>Manage Product</Link></li>
                             <li className='pt-3 pb-2 dashboard-li'><Link to='/dashboard/addProduct'>Add Product</Link></li>
-                            <li className='pt-3 pb-2 dashboard-li'><Link to='/dashboard'>dashboard</Link></li>
-                            <li className='pt-3 pb-2 dashboard-li'><Link to='/dashboard'>dashboard</Link></li>
+                            <li className='pt-3 pb-2 dashboard-li'><Link to='/dashboard/allUsers'>All User</Link></li>
                             
                         </ul>
                     </div>

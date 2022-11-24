@@ -15,7 +15,7 @@ const AddCategory = () => {
             const data = await res.json();
             return data;
         }
-    })
+    });
 
     const handleAddCategory = (e) => {
         e.preventDefault();

@@ -144,12 +144,12 @@ const Register = () => {
                                                 </div>
                                             </div>
                                             <div className="m-auto pt-lg-2">
-                                                <button type="submit" className="btn primary-bg w-100">Register</button>
+                                                <button type="submit" className="btn primary-bg bg-hover w-100">Register</button>
                                             </div>
                                         </form>
                                         <p className='text-center mt-lg-3'>OR</p>
                                         <div className="">
-                                            <button onClick={handleGoogleSignIn} className='btn primary-bg w-100'><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> login With Google</button>
+                                            <button onClick={handleGoogleSignIn} className='btn primary-bg bg-hover w-100'><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> login With Google</button>
 
                                         </div>
                                         <div>

@@ -107,11 +107,11 @@ const Login = () => {
                                                 <p className='text-danger'>{error}</p>
                                             </div>
                                             <div className="m-auto pt-lg-2">
-                                                <button type="submit" className="btn primary-bg w-100">Login</button>
+                                                <button type="submit" className="btn primary-bg bg-hover w-100">Login</button>
                                             </div>
                                             <p className='text-center mt-lg-3'>OR</p>
                                             <div className="">
-                                                <button type='button' onClick={handleGoogleSignIn} className='btn primary-bg w-100'><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> login With Google</button>
+                                                <button type='button' onClick={handleGoogleSignIn} className='btn primary-bg w-100 bg-hover'><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> login With Google</button>
                                             </div>
                                             <div className="m-auto pt-2">
                                                 <p className='ms-3'>Are you a New User? Please <Link to="/register">Register</Link></p>

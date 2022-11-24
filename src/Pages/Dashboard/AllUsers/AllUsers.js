@@ -2,6 +2,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import Loader from '../../Shared/Loader/Loader';
 
 const AllUsers = () => {
@@ -13,6 +14,19 @@ const AllUsers = () => {
             return data;
         }
     });
+
+    const handleDelteUser = (user) => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('user deleted successfully');
+                    refetch();
+                }
+            })
+    }
     if (isLoading) {
         return <Loader></Loader>
     }
@@ -41,7 +55,7 @@ const AllUsers = () => {
                                 <td>{user.email}</td>
                                 <td>{user.userType}</td>
                                 <td>
-                                    <FontAwesomeIcon className='text-danger' icon={faTrash}>
+                                    <FontAwesomeIcon onClick={() => handleDelteUser(user)} className='text-danger' icon={faTrash}>
 
                                     </FontAwesomeIcon>
                                 </td>

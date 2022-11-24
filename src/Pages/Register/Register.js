@@ -1,6 +1,7 @@
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -10,8 +11,10 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import './Register.css';
 
 const Register = () => {
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const googleProvider = new GoogleAuthProvider();
+    const [error, setError] = useState('');
     const [signUpError, setSignUpError] = useState('');
     const [createdUserEmail, setCreatedUserEmail] = useState('');
     const imageHostKey = process.env.REACT_APP_imgbb_key;
@@ -37,6 +40,39 @@ const Register = () => {
             })
             .catch(error => {
                 setSignUpError(error.message)
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn(googleProvider)
+            .then(result => {
+                const user = result.user;
+                const currentUser = {
+                    name: user.displayName,
+                    email: user.email,
+                    userType: 'buyer',
+                }
+                const userType = 'buyer';
+
+                saveUser(user.displayName, user.email, userType)
+
+                // fetch('https://travel-with-shawon-server.vercel.app/jwt', {
+                //     method: 'POST',
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify(currentUser)
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         localStorage.setItem('travelerToken', data.token)
+                //     })
+                setError('');
+                toast.success('successfully login');
+                navigate('/')
+            })
+            .catch(error => {
+                setError(error.message);
             })
     }
 
@@ -113,8 +149,11 @@ const Register = () => {
                                         </form>
                                         <p className='text-center mt-lg-3'>OR</p>
                                         <div className="">
-                                            <button className='btn primary-bg w-100'><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> login With Google</button>
+                                            <button onClick={handleGoogleSignIn} className='btn primary-bg w-100'><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> login With Google</button>
 
+                                        </div>
+                                        <div>
+                                            <p className="text-danger">{error}</p>
                                         </div>
                                         <p className='ms-2 mt-2'>Already Have an Account? <Link to="/login">Login</Link></p>
                                     </div>

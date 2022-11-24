@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 import './NavBar.css';
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .then(error => console.log(error))
+    }
     return (
         <div className='nav-bar'>
             <nav className="container navbar navbar-expand-lg navbar-light ">
@@ -22,26 +29,37 @@ const NavBar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/">Blog</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-white" to="/login">login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-white" to="/register">Register</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-white" to="/dashboard">Dashboard</Link>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle text-white" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </Link>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><Link className="dropdown-item" to="/">Action</Link></li>
-                                    <li><Link className="dropdown-item" to="/">Another action</Link></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <li><Link className="dropdown-item" to="/">Something else here</Link></li>
-                                </ul>
-                            </li>
+                            {
+                                user?.uid ?
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link text-white" to="/dashboard">Dashboard</Link>
+                                        </li>
+                                        <li className="nav-item dropdown">
+                                            <Link className="nav-link dropdown-toggle text-white" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Dropdown
+                                            </Link>
+                                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><Link className="dropdown-item" to="dashboard">Dashboard</Link></li>
+                                                <li><button className="dropdown-item" onClick={handleLogOut} to="/">Logout</button></li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li><Link className="dropdown-item" to="/">Something else here</Link></li>
+                                            </ul>
+                                        </li>
+                                    </>
+                                    :
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link text-white" to="/login">login</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link text-white" to="/register">Register</Link>
+                                        </li>
+                                    </>
+
+                            }
+
+
 
                         </ul>
                     </div>

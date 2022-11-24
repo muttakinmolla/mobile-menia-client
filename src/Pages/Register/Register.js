@@ -18,7 +18,8 @@ const Register = () => {
 
 
     const handleSignUp = (data) => {
-        console.log(data);
+        const type = data.type ? 'seller' : 'buyer';
+        saveUser(data)
         setSignUpError('');
         createUser(data.email, data.password)
 
@@ -30,7 +31,7 @@ const Register = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email,);
+                        saveUser(data.name, data.email, type);
                     })
                     .catch(error => console.log(error))
             })
@@ -39,8 +40,8 @@ const Register = () => {
             })
     }
 
-    const saveUser = (name, email) => {
-        const user = { name, email }
+    const saveUser = (name, email, userType) => {
+        const user = { name, email, userType }
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -74,10 +75,6 @@ const Register = () => {
                                                 {/* {errors?.name && errors}</p> */}
                                             </div>
                                             <div className="mb-3 m-auto">
-                                                <label className="form-label">Photo Url</label>
-                                                <input type="text" className="form-control" name='photoUrl' placeholder='put your photoUrl' />
-                                            </div>
-                                            <div className="mb-3 m-auto">
                                                 <label className="form-label">Email address</label>
                                                 <input type="email" className="form-control" name='email' placeholder='type your email' {...register("email", {
                                                     required: "Email is required",
@@ -89,6 +86,14 @@ const Register = () => {
                                                     required: "password is required",
                                                     minLength: { value: 6, message: 'password must be six charecter long' },
                                                 })} />
+                                            </div>
+                                            <div className=" mb-3 m-auto">
+                                                <div className="form-check">
+                                                    <input className="form-check-input" type="checkbox" name="type" id="flexRadioDefault1" {...register("type")} />
+                                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                        Default radio
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div className="mb-3 m-auto">
                                                 {/* <p className='text-danger'>{error}</p> */}

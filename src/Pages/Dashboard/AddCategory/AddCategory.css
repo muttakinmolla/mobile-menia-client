@@ -1,0 +1,8 @@
+.save-btn {
+    background-color: #bf6bed;
+    color: white;
+}
+.save-btn:hover{
+    background-color: #375570;
+    color: white;
+}

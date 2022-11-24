@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImage from '../../assets/images/login.png';
 import { AuthContext } from '../../contexts/AuthProvider';
 import './Register.css';
@@ -15,11 +15,11 @@ const Register = () => {
     const [signUpError, setSignUpError] = useState('');
     const [createdUserEmail, setCreatedUserEmail] = useState('');
     const imageHostKey = process.env.REACT_APP_imgbb_key;
+    const navigate = useNavigate();
 
 
     const handleSignUp = (data) => {
         const type = data.type ? 'seller' : 'buyer';
-        saveUser(data)
         setSignUpError('');
         createUser(data.email, data.password)
 
@@ -51,7 +51,8 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setCreatedUserEmail(email)
+                // setCreatedUserEmail(email)
+                navigate('/');
 
             })
     }
@@ -71,14 +72,17 @@ const Register = () => {
                                         <form onSubmit={handleSubmit(handleSignUp)}>
                                             <div className="mb-3 m-auto">
                                                 <label className="form-label">Name</label>
-                                                <input type="text" className="form-control" name='name' placeholder='type your name' {...register("name")} />
-                                                {/* {errors?.name && errors}</p> */}
+                                                <input type="text" className="form-control" name='name' placeholder='type your name' {...register("name", {
+                                                    required: "name is required",
+                                                })} />
+                                                <p className='text-danger'>{errors?.name && 'name field is required'}</p>
                                             </div>
                                             <div className="mb-3 m-auto">
                                                 <label className="form-label">Email address</label>
                                                 <input type="email" className="form-control" name='email' placeholder='type your email' {...register("email", {
                                                     required: "Email is required",
                                                 })} />
+                                                <p className='text-danger'>{errors?.email && 'email field is required'}</p>
                                             </div>
                                             <div className="mb-3 m-auto">
                                                 <label className="form-label">Password</label>
@@ -86,17 +90,22 @@ const Register = () => {
                                                     required: "password is required",
                                                     minLength: { value: 6, message: 'password must be six charecter long' },
                                                 })} />
+                                                <p className='text-danger'>{errors?.password?.message && errors.password.message}</p>
                                             </div>
                                             <div className=" mb-3 m-auto">
                                                 <div className="form-check">
                                                     <input className="form-check-input" type="checkbox" name="type" id="flexRadioDefault1" {...register("type")} />
-                                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                                        Default radio
+                                                    <label className="form-check-label blink_me text-danger" htmlFor="flexRadioDefault1">
+                                                        Do you want be a seller? please check this.
                                                     </label>
                                                 </div>
                                             </div>
                                             <div className="mb-3 m-auto">
-                                                {/* <p className='text-danger'>{error}</p> */}
+                                                <div>
+                                                    {
+                                                        signUpError && <p className=' text-danger'>{signUpError}</p>
+                                                    }
+                                                </div>
                                             </div>
                                             <div className="m-auto pt-lg-2">
                                                 <button type="submit" className="btn primary-bg w-100">Register</button>

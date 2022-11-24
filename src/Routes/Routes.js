@@ -3,6 +3,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import DisplayError from "../Pages/DisplayError/DisplayError";
 import DashboardLayout from "../Pages/Layouts/DashboardLayout";
 import Main from "../Pages/Layouts/Main";
+import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
             }
         ]
     },

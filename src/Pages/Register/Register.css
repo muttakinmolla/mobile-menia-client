@@ -8,3 +8,14 @@
     color: white;
     transition: 0.5s;
 }
+
+.blink_me {
+    animation: blinker 1.5s linear infinite;
+}
+
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}

@@ -7,6 +7,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyWishlist from "../Pages/Dashboard/MyWishlist/MyWishlist";
 import DisplayError from "../Pages/DisplayError/DisplayError";
+import Home from "../Pages/Home/Home/Home";
 import DashboardLayout from "../Pages/Layouts/DashboardLayout";
 import Main from "../Pages/Layouts/Main";
 import Login from "../Pages/Login/Login";
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <Main></Main>,
         errorElement: <DisplayError></DisplayError>,
         children: [
+            {
+                path: '/',
+                element: <Home></Home>
+            },
             {
                 path: '/register',
                 element: <Register></Register>

@@ -16,20 +16,20 @@ const Footer = () => {
                     </div>
                     <div className="col-lg-4 text-center">
                         <h5>Most viewed Category</h5>
-                        <span class="badge bg-primary m-1">iphone</span>
-                        <span class="badge bg-primary m-1">samsung</span>
-                        <span class="badge bg-primary m-1">sony</span>
-                        <span class="badge bg-primary m-1">xiaomi</span>
-                        <span class="badge bg-primary m-1">oppo</span>
-                        <span class="badge bg-primary m-1">vivo</span>
-                        <span class="badge bg-primary m-1">itel</span>
-                        <span class="badge bg-primary m-1">huawei</span>
-                        <span class="badge bg-primary m-1">onePlus</span>
-                        <span class="badge bg-primary m-1">guru</span>
-                        <span class="badge bg-primary m-1">intel</span>
-                        <span class="badge bg-primary m-1">lgend</span>
-                        <span class="badge bg-primary m-1">nokia</span>
-                        <span class="badge bg-primary m-1">motorolla</span>
+                        <span className="badge bg-primary m-1">iphone</span>
+                        <span className="badge bg-primary m-1">samsung</span>
+                        <span className="badge bg-primary m-1">sony</span>
+                        <span className="badge bg-primary m-1">xiaomi</span>
+                        <span className="badge bg-primary m-1">oppo</span>
+                        <span className="badge bg-primary m-1">vivo</span>
+                        <span className="badge bg-primary m-1">itel</span>
+                        <span className="badge bg-primary m-1">huawei</span>
+                        <span className="badge bg-primary m-1">onePlus</span>
+                        <span className="badge bg-primary m-1">guru</span>
+                        <span className="badge bg-primary m-1">intel</span>
+                        <span className="badge bg-primary m-1">lgend</span>
+                        <span className="badge bg-primary m-1">nokia</span>
+                        <span className="badge bg-primary m-1">motorolla</span>
                     </div>
                     <div className="col-lg-4 text-center">
                         <h5>Our Social media LInk</h5>

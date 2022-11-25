@@ -19,7 +19,7 @@ const NavBar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className='w-100 d-lg-block d-md-block d-none'>
-                        {/* <marquee className='m-auto' direction="right">Choose your bike from here. Thousand of bike collection is here. just choose and buy.</marquee> */}
+                        <marquee className='m-auto' direction="right">Choose your bike from here. Thousand of mobile collection is here. just choose and buy.</marquee>
                     </div>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

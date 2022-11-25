@@ -2,18 +2,24 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import Loader from '../../Shared/Loader/Loader';
 
 const ManageProduct = () => {
+    const { user } = useContext(AuthContext);
 
     const { data: products, isLoading, refetch } = useQuery({
-        queryKey: ['products'],
+        queryKey: ['products', user?.email],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allProduct')
+            const res = await fetch(`http://localhost:5000/allProduct?email=${user.email}`)
             const data = await res.json();
             return data;
         }
     });
+    if (isLoading) {
+        return <Loader></Loader>
+    }
     return (
         <div>
             <h3>All Product</h3>

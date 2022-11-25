@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import Loader from '../../Shared/Loader/Loader';
 import './AddProdcut.css';
@@ -10,7 +11,8 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const date = format(selectedDate, 'PP')
+    const date = format(selectedDate, 'PP');
+    const navigate = useNavigate();
 
 
     const { data: categories, isLoading, refetch } = useQuery({
@@ -54,6 +56,7 @@ const AddProduct = () => {
                     const product = {
                         name: name,
                         seller_name: seller_name,
+                        email: user.email,
                         category: category,
                         resell_price: resell_price,
                         condition: condition,
@@ -77,7 +80,8 @@ const AddProduct = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result)
-                            toast.success(`${result.name} is added successfully`);
+                            toast.success('product is added successfully');
+                            navigate('/dashboard/allProduct')
                             form.reset();
                         })
 

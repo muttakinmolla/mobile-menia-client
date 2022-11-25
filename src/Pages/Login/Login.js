@@ -6,6 +6,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import loginImage from '../../assets/images/login.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const { googleSignIn, signInEmailPassword } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+
     const from = location.state?.from?.pathname || '/';
 
     const handleGoogleSignIn = () => {
@@ -26,17 +28,6 @@ const Login = () => {
                 }
                 const userType = 'buyer';
 
-                // fetch('https://travel-with-shawon-server.vercel.app/jwt', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(currentUser)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         localStorage.setItem('travelerToken', data.token)
-                //     })
                 setError('');
                 toast.success('successfully login');
                 navigate(from, { replace: true })
@@ -55,31 +46,26 @@ const Login = () => {
         signInEmailPassword(email, password)
             .then(result => {
                 const user = result.user;
+                console.log(user.email);
 
-                const currentUser = {
-                    email: user.email
-                }
-                fetch('https://travel-with-shawon-server.vercel.app/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        localStorage.setItem('travelerToken', data.token)
-                    })
                 setError('');
                 form.reset();
-                navigate(from, { replace: true });
-
+                getUserToken(user.email);
             })
             .catch(error => {
                 setError(error.message)
             })
 
+    }
+    const getUserToken = (email) => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken);
+                    navigate(from, { replace: true });
+                }
+            })
     }
     return (
         <div>

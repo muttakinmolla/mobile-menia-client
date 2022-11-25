@@ -1,7 +1,6 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
-import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import Loader from '../../Shared/Loader/Loader';
@@ -9,10 +8,14 @@ import Loader from '../../Shared/Loader/Loader';
 const ManageProduct = () => {
     const { user } = useContext(AuthContext);
 
-    const { data: products, isLoading, refetch } = useQuery({
-        queryKey: ['products', user?.email],
+    const { data: products, isLoading } = useQuery({
+        queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allProduct?email=${user.email}`)
+            const res = await fetch(`http://localhost:5000/allProduct?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json();
             return data;
         }

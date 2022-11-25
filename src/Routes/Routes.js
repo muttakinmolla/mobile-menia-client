@@ -4,12 +4,17 @@ import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import ManageProduct from "../Pages/Dashboard/AddProduct/ManageProduct";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
+import MyWishlist from "../Pages/Dashboard/MyWishlist/MyWishlist";
 import DisplayError from "../Pages/DisplayError/DisplayError";
 import DashboardLayout from "../Pages/Layouts/DashboardLayout";
 import Main from "../Pages/Layouts/Main";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import AdminRoute from "./AdminRoute/AdminRoute";
+import BuyerRoute from "./BuyerRoute/BuyerRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import SellerRoute from "./SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
 
@@ -37,22 +42,43 @@ const router = createBrowserRouter([
                 path: '/dashboard',
                 element: <Dashboard></Dashboard>
             },
+            // =============================================== admin route goes here =====================================
             {
                 path: '/dashboard/addCategory',
-                element: <AddCategory></AddCategory>
-            },
-            {
-                path: '/dashboard/addProduct',
-                element: <AddProduct></AddProduct>
-            },
-            {
-                path: '/dashboard/allProduct',
-                element: <ManageProduct></ManageProduct>
+                element: <AdminRoute><AddCategory></AddCategory></AdminRoute>
             },
             {
                 path: '/dashboard/allUsers',
-                element: <AllUsers></AllUsers>
-            }
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            // =============================================== admin route end from here =====================================
+
+
+            // =============================================== seller route start from here =====================================
+            {
+                path: '/dashboard/addProduct',
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
+            },
+            {
+                path: '/dashboard/allProduct',
+                element: <SellerRoute><ManageProduct></ManageProduct></SellerRoute>
+            },
+            // =============================================== seller route end from here =====================================
+
+
+            // =============================================== buyer route start from here =====================================
+
+            {
+                path: '/dashboard/myOrders',
+                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+            },
+            {
+                path: '/dashboard/myWishlist',
+                element: <BuyerRoute><MyWishlist></MyWishlist></BuyerRoute>
+            },
+
+            // =============================================== buyer route end from here =====================================
+
         ]
     }
 ]);

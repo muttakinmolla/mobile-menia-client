@@ -14,7 +14,7 @@ const NavBar = () => {
         <div className='nav-bar'>
             <nav className="container navbar navbar-expand-lg navbar-light ">
                 <div className="container-fluid py-1">
-                    <Link className="navbar-brand bike-picker px-3 rounded fw-bold" to="/"><span className='bike'>BIKE</span> <span className='picker'>PICKER</span></Link>
+                    <Link className="navbar-brand bike-picker px-3 rounded fw-bold" to="/"><span className='bike'>MOBILE</span> <span className='picker'>MENIA</span></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -51,9 +51,6 @@ const NavBar = () => {
                                     <>
                                         <li className="nav-item">
                                             <Link className="nav-link text-white" to="/login">login</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-link text-white" to="/register">Register</Link>
                                         </li>
                                     </>
 

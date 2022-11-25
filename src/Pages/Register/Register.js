@@ -69,7 +69,6 @@ const Register = () => {
                 //     })
                 setError('');
                 toast.success('successfully login');
-                navigate('/')
             })
             .catch(error => {
                 setError(error.message);
@@ -89,6 +88,9 @@ const Register = () => {
             .then(data => {
                 // setCreatedUserEmail(email)
                 getUserToken(email)
+            })
+            .catch(error => {
+                console.log(error);
             })
     }
 

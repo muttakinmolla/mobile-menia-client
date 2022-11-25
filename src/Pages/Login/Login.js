@@ -28,9 +28,10 @@ const Login = () => {
                 }
                 const userType = 'buyer';
 
+                getUserToken(user.email);
+
                 setError('');
                 toast.success('successfully login');
-                navigate(from, { replace: true })
             })
             .catch(error => {
                 setError(error.message);

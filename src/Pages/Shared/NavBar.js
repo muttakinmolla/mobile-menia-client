@@ -27,7 +27,7 @@ const NavBar = () => {
                                 <Link className="nav-link text-white" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="/">Blog</Link>
+                                <Link className="nav-link text-white" to="/blog">Blog</Link>
                             </li>
                             {
                                 user?.uid ?

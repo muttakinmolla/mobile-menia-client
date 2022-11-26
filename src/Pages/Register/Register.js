@@ -133,7 +133,7 @@ const Register = () => {
                                             <div className=" mb-3 m-auto">
                                                 <div className="form-check">
                                                     <input className="form-check-input" type="checkbox" name="type" id="flexRadioDefault1" {...register("type")} />
-                                                    <label className="form-check-label text-danger ms-2" htmlFor="flexRadioDefault1">
+                                                    <label className="form-check-label text-danger ms-2">
                                                         Do you want be a seller? please check this.
                                                     </label>
                                                 </div>

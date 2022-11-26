@@ -99,39 +99,43 @@ const ProductDetails = () => {
                     <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
                         <p>Give order</p>
                     </div>
-                    <form onSubmit={handleOrder}>
-                        <div className="row mt-4">
-                            <div className="col-lg-12">
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder='name' name="name" value={user?.displayName} readOnly />
-                                </div>
+                    {
+                        user?.email ?
+                            <form onSubmit={handleOrder}>
+                                <div className="row mt-4">
+                                    <div className="col-lg-12">
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder='name' name="name" value={user?.displayName} readOnly />
+                                        </div>
 
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder='resell Price' name="resell" value={user.email} readOnly />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder='Original Price' name="original_price" value={resell_price} readOnly />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder='condition' name="condition" value={name} readOnly />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder='enter your mobile number' name="buyer_mobile" />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" placeholder='location' name="meting_location" />
-                                </div>
-                                <div className="mb-3">
-                                    <div className="">
-                                        <textarea className="form-control textArea" name='opinion' placeholder="write your opinion" ></textarea>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder='resell Price' name="resell" value={user.email} readOnly />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder='Original Price' name="original_price" value={resell_price} readOnly />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder='condition' name="condition" value={name} readOnly />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder='enter your mobile number' name="buyer_mobile" />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder='location' name="meting_location" />
+                                        </div>
+                                        <div className="mb-3">
+                                            <div className="">
+                                                <textarea className="form-control textArea" name='opinion' placeholder="write your opinion" ></textarea>
+
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-                        <input className='btn save-btn' type="submit" name="" id="" />
-                    </form>
+                                <input className='btn save-btn' type="submit" name="" id="" />
+                            </form> :
+                            <p>Please Login for order this product</p>
+                    }
                 </div>
             </div>
         </div>

@@ -18,7 +18,6 @@ const Contact = () => {
                             <p>Subscribe to our newsletter and stay updated.</p>
                         </div>
                         <div className="form-input">
-                            <label for="email"></label>
                             <input type="email" placeholder="Your Email" />
                             <button className="subscribe-btn">Subscribe</button>
                         </div>

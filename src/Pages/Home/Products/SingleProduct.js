@@ -23,7 +23,6 @@ const SingleProduct = ({ product }) => {
             return data;
         }
     });
-    console.log(seller)
 
 
     const handleWishlist = (id) => {

@@ -28,13 +28,14 @@ const Register = () => {
 
             .then(result => {
                 const user = result.user;
-                toast.success('user created successfully');
+
                 const userInfo = {
                     displayName: data.name,
                 }
                 updateUser(userInfo)
                     .then(() => {
                         saveUser(data.name, data.email, type);
+                        toast.success('user created successfully');
                     })
                     .catch(error => console.log(error))
             })
@@ -56,17 +57,7 @@ const Register = () => {
 
                 saveUser(user.displayName, user.email, userType)
 
-                // fetch('https://travel-with-shawon-server.vercel.app/jwt', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(currentUser)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         localStorage.setItem('travelerToken', data.token)
-                //     })
+
                 setError('');
                 toast.success('successfully login');
             })

@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import AllProducts from './AllProducts';
-import './Products.css';
+import React from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
+import SingleProduct from '../Home/Products/SingleProduct';
 
-const Products = () => {
+const Categories = () => {
+    const products = useLoaderData();
 
     const { data: categories, isLoading, refetch } = useQuery({
         queryKey: ['categories'],
@@ -17,11 +17,9 @@ const Products = () => {
 
     return (
         <div className='container'>
-            <h5 className='mt-3 text-center primary-bg w-50 m-auto p-3 rounded'>
-                Please select a Category
-            </h5>
+
             <div className="row">
-                <div className="col-lg-3 mt-3 rounded">
+                <div className="col-12 col-sm-3 mt-5 rounded">
 
                     <div className="vertical-menu">
                         {
@@ -30,12 +28,18 @@ const Products = () => {
 
                     </div>
                 </div>
-                <div className="col-lg-9 mt-3">
-                    <AllProducts></AllProducts>
+                <div className="col-12 col-sm-9 mt-5">
+                    <div className="row">
+                        {
+                            products?.map(product => <SingleProduct product={product} key={product._id}></SingleProduct>)
+                        }
+                    </div>
                 </div>
             </div>
+
+
         </div>
     );
 };
 
-export default Products;
+export default Categories;

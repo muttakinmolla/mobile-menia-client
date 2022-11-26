@@ -5,7 +5,7 @@ import verify from '../../../assets/images/verify.jpg';
 const SingleProduct = ({ product }) => {
     const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
     return (
-        <div className="col-lg-4 mb-5">
+        <div className="col-lg-6 col-md-6 mb-5">
             <div className="card">
                 <img src={image} className="card-img-top img-fluid w-100 product-image" alt="..." />
                 <div className="card-body">

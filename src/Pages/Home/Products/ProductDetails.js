@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import Loader from '../../Shared/Loader/Loader';
 
@@ -8,27 +8,31 @@ const ProductDetails = () => {
     const { user } = useContext(AuthContext);
     const product = useLoaderData();
     const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
+    const navigate = useNavigate();
 
 
     const handleOrder = (e) => {
         e.preventDefault();
         const form = e.target;
-        const prodcut_id = _id;
+        const product_id = _id;
         const buyer_name = user?.displayName;
         const buyer_email = user?.email;
-        const price = original_price;
         const product_name = name;
         const buyer_mobile = form.buyer_mobile.value;
+        const seller_mobile = mobile;
         const meting_location = form.meting_location.value;
         const opinion = form.opinion.value;
 
         const order = {
-            prodcut_id,
+            product_id,
             buyer_name,
+            seller_name,
+            image,
             buyer_email,
-            price,
+            resell_price,
             product_name,
             buyer_mobile,
+            seller_mobile,
             meting_location,
             opinion
         }
@@ -47,6 +51,7 @@ const ProductDetails = () => {
                 if (data.acknowledged) {
 
                     toast.success('Order submit successfully');
+                    navigate('/')
                 }
             })
 

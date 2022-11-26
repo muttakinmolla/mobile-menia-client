@@ -8,14 +8,23 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import ConfirmationModal from '../../Shared/ConfrimationModal/ConfirmationModal';
 import Loader from '../../Shared/Loader/Loader';
+import { useQuery } from '@tanstack/react-query';
 
 const SingleProduct = ({ product }) => {
 
     const { user } = useContext(AuthContext);
     const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
 
-    const [booking, setBooking] = useState({});
-    console.log(booking);
+    const { data: seller, isLoading, refetch } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/verifiedUser/${email}`,)
+            const data = await res.json();
+            return data;
+        }
+    });
+    console.log(seller)
+
 
     const handleWishlist = (id) => {
         if (user?.email) {
@@ -54,33 +63,37 @@ const SingleProduct = ({ product }) => {
         }
 
     }
+
+    if (isLoading) {
+        return <Loader></Loader>
+    }
     return (
         <div className="col-lg-6 col-md-6 mb-5">
             <div id="product-container">
-                <div class="product-details">
+                <div className="product-details">
                     <h1 className='text-center'>{name}</h1>
-                    <p class="information">Name : {seller_name} <span className='ms-4'>
-                        <img src={verify} className="verify" alt="" /></span>  </p>
-                    <p class="information">Location : {location}  </p>
-                    <p class="information">Contact : {mobile}  </p>
-                    <p class="information">Condition : {condition}  </p>
-                    <div class="product-control">
+                    <p className="information">Name : {seller_name} {seller?.isVerified === 'verify' && <span className='ms-4'>
+                        <img src={verify} className="verify" alt="" /></span>}  </p>
+                    <p className="information">Location : {location}  </p>
+                    <p className="information">Contact : {mobile}  </p>
+                    <p className="information">Condition : {condition}  </p>
+                    <div className="product-control">
 
-                        <button class="product-btn">
-                            <span class="price">${resell_price}</span>
-                            <span class="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
-                            <span class="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span>
+                        <button className="product-btn">
+                            <span className="price">${resell_price}</span>
+                            <span className="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
+                            <span className="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span>
                         </button>
 
                     </div>
 
                 </div>
 
-                <div class="product-image">
+                <div className="product-image">
 
                     <img src={image} alt="" />
 
-                    <div class="info">
+                    <div className="info">
                         <h2> Description</h2>
                         <ul>
                             <li><strong>purchase_year : </strong> {purchase_year} </li>
@@ -93,19 +106,19 @@ const SingleProduct = ({ product }) => {
             </div>
             {/* ********************* modal ******************************* */}
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{name}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">{name}</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             ...
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>

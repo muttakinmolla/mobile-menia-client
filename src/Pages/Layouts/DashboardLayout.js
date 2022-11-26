@@ -18,7 +18,7 @@ const DashboardLayout = () => {
         <div>
             <NavBar></NavBar>
             <div className='px-3'>
-                <div className="row mt-5 pt-3">
+                <div className="row">
                     <div className="col-3 primary-bg aside">
                         <ul className='mt-lg-4'>
                             <li className='pt-2 pb-2 dashboard-li'><Link to='/dashboard'>dashboard</Link></li>
@@ -48,7 +48,7 @@ const DashboardLayout = () => {
 
                         </ul>
                     </div>
-                    <div className="col-9 mt-5">
+                    <div className="col-9">
                         <Outlet></Outlet>
                     </div>
                 </div>

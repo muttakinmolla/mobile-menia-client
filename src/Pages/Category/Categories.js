@@ -31,7 +31,12 @@ const Categories = () => {
                 <div className="col-12 col-sm-9 mt-5">
                     <div className="row">
                         {
-                            products?.map(product => <SingleProduct product={product} key={product._id}></SingleProduct>)
+                            products?.map(product => <SingleProduct
+
+                                product={product}
+                                key={product._id}
+
+                            ></SingleProduct>)
                         }
                     </div>
                 </div>

@@ -1,7 +1,9 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import './NavBar.css';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -23,6 +25,19 @@ const NavBar = () => {
                     </div>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className="nav-link text-danger" aria-current="page" to="/"></Link>
+                            </li>
+                            <Link to='' className="btn btn-primary position-relative">
+                                <FontAwesomeIcon icon={faHeart}>
+
+
+                                </FontAwesomeIcon>
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    99+
+                                    <span className="visually-hidden">unread messages</span>
+                                </span>
+                            </Link>
                             <li className="nav-item">
                                 <Link className="nav-link text-white" aria-current="page" to="/">Home</Link>
                             </li>

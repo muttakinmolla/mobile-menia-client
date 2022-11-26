@@ -22,18 +22,22 @@ const MyOrders = () => {
     }
     return (
         <div>
-            this is buyer all orders
+            <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
+                <h4>All Order</h4>
+            </div>
 
-            <div>
+            <div className='px-3'>
                 <table className="table table-hover">
                     <thead className='text-center'>
                         <tr>
                             <th scope="col">Sl.</th>
                             <th scope="col">product</th>
+                            <th scope="col">image</th>
                             <th scope="col">Seller Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">seller Mob.</th>
                             <th scope="col">Meat Location</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,12 +53,9 @@ const MyOrders = () => {
                                 <td>{order.seller_name}</td>
                                 <td>{order.resell_price}</td>
                                 <td>{order.seller_mobile}</td>
-                                <td>{order.condition}</td>
                                 <td>{order.meting_location}</td>
                                 <td>
-                                    {/* <FontAwesomeIcon className='text-danger' icon={faTrash}>
-
-                                    </FontAwesomeIcon> */}
+                                    <button className='btn btn-warning'>Pay</button>
                                 </td>
                             </tr>)
                         }

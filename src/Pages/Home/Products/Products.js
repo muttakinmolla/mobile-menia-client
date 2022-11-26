@@ -30,7 +30,7 @@ const Products = () => {
 
                     </div>
                 </div>
-                <div className="col-lg-10 mt-3">
+                <div className="col-lg-10 mt-2">
                     <AllProducts></AllProducts>
                 </div>
             </div>

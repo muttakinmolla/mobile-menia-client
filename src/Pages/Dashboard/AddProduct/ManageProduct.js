@@ -25,7 +25,9 @@ const ManageProduct = () => {
     }
     return (
         <div>
-            <h3>All Product</h3>
+            <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
+                <h4>All Product</h4>
+            </div>
 
             <div>
                 <table className="table table-hover">

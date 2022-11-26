@@ -55,7 +55,9 @@ const AllUsers = () => {
     }
     return (
         <div>
-            <h3>All Product</h3>
+            <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
+                <h4>All user</h4>
+            </div>
 
             <div className='p-3 border rounded'>
                 <table className="table table-hover">

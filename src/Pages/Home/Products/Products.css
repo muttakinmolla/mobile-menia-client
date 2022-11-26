@@ -1,4 +1,7 @@
-.vertical-menu {}
+.vertical-menu {
+	height: 100%;
+	background-color: #eee;
+}
 
 .vertical-menu a {
     background-color: #eee;

@@ -23,7 +23,9 @@ const MyWishlist = () => {
     }
     return (
         <div>
-            This is buyer wishlist
+            <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
+                <h4>All Wishlist</h4>
+            </div>
 
             <table className="table table-hover">
                 <thead className='text-center'>

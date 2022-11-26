@@ -49,7 +49,9 @@ const AddCategory = () => {
 
     return (
         <div>
-            <h3 className='text-center'>Add a category</h3>
+            <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
+                <h4>All category</h4>
+            </div>
             <div className="row">
                 <div className="col-lg-4">
                     <form onSubmit={handleAddCategory}>

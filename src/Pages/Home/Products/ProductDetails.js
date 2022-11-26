@@ -66,8 +66,8 @@ const ProductDetails = () => {
                 <h1 className=''>Order {name} now</h1>
             </div>
             <div className="row">
-                <div className="col-lg-8">
-                    <div className="card mb-3" >
+                <div className="col-lg-7">
+                    <div className="card mb-3 px-4 py-4" >
                         <div className="row g-0">
                             <div className="col-md-4">
                                 <img src={image} className="img-fluid rounded-start" alt="..." />
@@ -95,10 +95,13 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4">
+                <div className="col-lg-5">
+                    <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
+                        <p>Give order</p>
+                    </div>
                     <form onSubmit={handleOrder}>
                         <div className="row mt-4">
-                            <div className="col-lg-6">
+                            <div className="col-lg-12">
                                 <div className="mb-3">
                                     <input type="text" className="form-control" placeholder='name' name="name" value={user?.displayName} readOnly />
                                 </div>
@@ -118,15 +121,13 @@ const ProductDetails = () => {
                                 <div className="mb-3">
                                     <input type="text" className="form-control" placeholder='location' name="meting_location" />
                                 </div>
-
-                            </div>
-                            <div className="col-lg-6">
                                 <div className="mb-3">
                                     <div className="">
                                         <textarea className="form-control textArea" name='opinion' placeholder="write your opinion" ></textarea>
 
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <input className='btn save-btn' type="submit" name="" id="" />

@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Category from '../../Category/Category';
 import AllProducts from './AllProducts';
 import './Products.css';
 
@@ -18,26 +17,22 @@ const Products = () => {
 
     return (
         <div className='container'>
-            <div className='w-50 m-auto'>
-                <h5 className='mt-5 mb-5 p-3 rounded primary-bg text-center text-white'>
-                    Please select a Category
-                </h5>
-            </div>
+            <h5 className='mt-3 text-center primary-bg w-50 m-auto p-3 rounded'>
+                Please select a Category
+            </h5>
             <div className="row">
-                {
-                    categories?.map(category => <Category category={category} key={category._id}></Category>)
-                }
-                {/* <div className="col-lg-4 mt-3 rounded">
+                <div className="col-lg-3 mt-3 rounded">
 
-                    
+                    <div className="vertical-menu">
                         {
                             categories?.map((category, index) => <Link to={`/products/:${category._id}`} key={category._id}>{category.name}</Link>)
                         }
-                        
+
+                    </div>
                 </div>
                 <div className="col-lg-9 mt-3">
                     <AllProducts></AllProducts>
-                </div> */}
+                </div>
             </div>
         </div>
     );

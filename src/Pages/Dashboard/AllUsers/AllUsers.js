@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import Loader from '../../Shared/Loader/Loader';
+import verify from '../../../assets/images/verify.jpg';
 
 const AllUsers = () => {
     const { data: users, isLoading, refetch } = useQuery({
@@ -31,6 +32,24 @@ const AllUsers = () => {
                 }
             })
     }
+
+    const handleMakeAdmin = id => {
+        fetch(`http://localhost:5000/allUser/verify/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('make admin successfull');
+                    refetch();
+                }
+            })
+    }
+
+
     if (isLoading) {
         return <Loader></Loader>
     }
@@ -46,6 +65,7 @@ const AllUsers = () => {
                             <th scope="col">Name</th>
                             <th scope="col">email</th>
                             <th scope="col">user type</th>
+                            <th scope="col">verify</th>
                             <th scope="col">action</th>
                         </tr>
                     </thead>
@@ -59,6 +79,13 @@ const AllUsers = () => {
                                 <td>{user.email}</td>
                                 <td>{user.userType}</td>
                                 <td>
+
+                                    {
+                                        user.isVerified !== 'verify' ? <button className='btn btn-warning' onClick={() => handleMakeAdmin(user._id)}>verify </button> : <img className='img-fluid verify' src={verify} alt="" />
+                                    }
+
+                                </td>
+                                <td>
                                     <FontAwesomeIcon onClick={() => handleDelteUser(user)} className='text-danger' icon={faTrash}>
 
                                     </FontAwesomeIcon>
@@ -68,7 +95,7 @@ const AllUsers = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 

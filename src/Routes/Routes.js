@@ -10,6 +10,7 @@ import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyWishlist from "../Pages/Dashboard/MyWishlist/MyWishlist";
 import DisplayError from "../Pages/DisplayError/DisplayError";
 import Home from "../Pages/Home/Home/Home";
+import ProductDetails from "../Pages/Home/Products/ProductDetails";
 import DashboardLayout from "../Pages/Layouts/DashboardLayout";
 import Main from "../Pages/Layouts/Main";
 import Login from "../Pages/Login/Login";
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
                 path: '/products/category/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/products/category/${params.id}`),
                 element: <Categories></Categories>
+            },
+            {
+                path: '/product/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+                element: <ProductDetails></ProductDetails>
             },
             {
                 path: '/blog',

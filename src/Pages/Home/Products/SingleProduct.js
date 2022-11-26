@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import verify from '../../../assets/images/verify.jpg';
@@ -14,8 +15,7 @@ const SingleProduct = ({ product }) => {
     const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
 
     const [booking, setBooking] = useState({});
-    console.log(booking)
-
+    console.log(booking);
 
     const handleWishlist = (id) => {
         if (user?.email) {
@@ -56,44 +56,62 @@ const SingleProduct = ({ product }) => {
     }
     return (
         <div className="col-lg-6 col-md-6 mb-5">
-            <div className="card">
-                <img src={image} className="card-img-top img-fluid w-100 product-image" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">{name}</h5>
-                    <p className="card-text">{description}</p>
-                </div>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item d-flex justify-content-between align-items-center">Name : {seller_name}
-                        <img className='img-fluid verify' src={verify} alt="" />
-                    </li>
-                    <li className="list-group-item">Mobile : {mobile}</li>
-                    <li className="list-group-item">email : {email}</li>
-                    <li className="list-group-item">Location : {location}</li>
-                    <li className="list-group-item">sell Price : {resell_price}</li>
-                    <li className="list-group-item">new Price : {original_price}</li>
-                    <li className="list-group-item">new Price : {original_price}</li>
-                    <li className="list-group-item">Type : {condition}</li>
-                    <li className="list-group-item">Type : {category}</li>
-                    <li className="list-group-item">Buy Time : {purchase_year}</li>
-                    <li className="list-group-item">Post Time: {posted_time}</li>
-                </ul>
-                <div className="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <Link to='' className='btn primary-bg'>See Details</Link>
-                    </div>
-                    <div className='d-flex align-items-center'>
-                        <FontAwesomeIcon icon={faHeart} onClick={() => handleWishlist(_id)}></FontAwesomeIcon>
+            <div id="product-container">
+                <div class="product-details">
+                    <h1 className='text-center'>{name}</h1>
+                    <p class="information">Name : {seller_name} <span className='ms-4'>
+                        <img src={verify} className="verify" alt="" /></span>  </p>
+                    <p class="information">Location : {location}  </p>
+                    <p class="information">Contact : {mobile}  </p>
+                    <p class="information">Condition : {condition}  </p>
+                    <div class="product-control">
 
-                        <button type="button" onClick={() => setBooking(product)} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >
-                            Book Now
+                        <button class="product-btn">
+                            <span class="price">${resell_price}</span>
+                            <span class="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
+                            <span class="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span>
                         </button>
+
+                    </div>
+
+                </div>
+
+                <div class="product-image">
+
+                    <img src={image} alt="" />
+
+                    <div class="info">
+                        <h2> Description</h2>
+                        <ul>
+                            <li><strong>purchase_year : </strong> {purchase_year} </li>
+                            <li><strong>Name : </strong>{seller_name}</li>
+                            <li><strong>Mobile: </strong>{mobile}</li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
-            <ConfirmationModal
-                product={booking}
-                setBooking={setBooking}
-            ></ConfirmationModal>
+            {/* ********************* modal ******************************* */}
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{name}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* ********************* modal ******************************* */}
         </div>
     );
 };

@@ -21,7 +21,7 @@ const Products = () => {
                 Please select a Category
             </h5>
             <div className="row">
-                <div className="col-lg-3 mt-3 rounded">
+                <div className="col-lg-2 mt-4 rounded">
 
                     <div className="vertical-menu">
                         {
@@ -30,7 +30,7 @@ const Products = () => {
 
                     </div>
                 </div>
-                <div className="col-lg-9 mt-3">
+                <div className="col-lg-10 mt-3">
                     <AllProducts></AllProducts>
                 </div>
             </div>

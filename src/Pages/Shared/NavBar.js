@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import './NavBar.css';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -28,8 +28,8 @@ const NavBar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link text-danger" aria-current="page" to="/"></Link>
                             </li>
-                            <Link to='' className="btn btn-primary position-relative">
-                                <FontAwesomeIcon icon={faHeart}>
+                            <Link to='/dashboard/myWishlist' className=" position-relative">
+                                <FontAwesomeIcon icon={faShoppingCart} className='fs-1'>
 
 
                                 </FontAwesomeIcon>

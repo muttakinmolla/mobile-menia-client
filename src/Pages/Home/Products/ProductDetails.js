@@ -57,9 +57,9 @@ const ProductDetails = () => {
 
     }
 
-    if (!user) {
-        return <Loader></Loader>
-    }
+    // if (!user) {
+    //     return <Loader></Loader>
+    // }
     return (
         <div className='container'>
             <div className='w-50 m-auto'>

@@ -76,7 +76,7 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // setCreatedUserEmail(email)
+                console.log(data)
                 getUserToken(email)
             })
             .catch(error => {

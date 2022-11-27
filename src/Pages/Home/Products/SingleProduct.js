@@ -13,7 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 const SingleProduct = ({ product }) => {
 
     const { user, setBooking } = useContext(AuthContext);
-    const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
+    const { _id, name, seller_name, email, category, resell_price, status, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
     const [show, setShow] = useState(false);
 
     const { data: seller, isLoading, refetch } = useQuery({
@@ -25,13 +25,10 @@ const SingleProduct = ({ product }) => {
         }
     });
 
-
-
     const handleBooking = (product) => {
         setShow(true);
         setBooking(product)
     }
-
 
     const handleWishlist = (id) => {
         if (user?.email) {
@@ -79,7 +76,14 @@ const SingleProduct = ({ product }) => {
 
             <div id="product-container">
                 <div className="product-details">
-                    <h1 className='text-center'>{name}</h1>
+                    <div type="button" class=" position-relative">
+                        <h2 className='text-center'>{name}</h2>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                            {status === 'inStock' && 'Available'}
+                            {/* <span className='badge bg-primary text-size "visually-hidden'>{status === 'inStock' && 'Available'}</span> */}
+                        </span>
+                    </div>
+                    {/* <h2 className='text-center'>{name}</h2> <span className='badge bg-primary text-size'>{status === 'inStock' && 'Available'}</span> */}
                     <p className="information">Name : {seller_name} {seller?.isVerified === 'verify' && <span className='ms-4'>
                         <img src={verify} className="verify" alt="" /></span>}  </p>
                     <p className="information">Location : {location}  </p>

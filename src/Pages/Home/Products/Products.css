@@ -62,20 +62,22 @@ body {
 
 }
 
-
+.text-size{
+	font-size: 14px;
+}
 
 .product-details {
 	position: relative;
 	text-align: left;
 	overflow: hidden;
-	padding: 30px;
+	padding: 25px;
 	height: 100%;
 	float: left;
 	width: 48%;
 
 }
 
-#product-container .product-details h1 {
+#product-container .product-details  {
 	font-family: 'Bebas Neue', cursive;
 	display: inline-block;
 	position: relative;

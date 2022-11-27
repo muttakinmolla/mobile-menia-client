@@ -12,12 +12,29 @@ const ProductDetails = () => {
     const { user, setBooking } = useContext(AuthContext);
     const product = useLoaderData();
     const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
+    const  navigate = useNavigate();
 
     const [show, setShow] = useState(false);
 
     const handleBooking = (product) => {
         setShow(true);
         setBooking(product)
+    };
+
+    const handleReport = (product) => {
+        fetch('http://localhost:5000/report', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                toast.success('product reported successfully');
+                navigate('/')
+            })
     }
 
     return (
@@ -51,7 +68,8 @@ const ProductDetails = () => {
                     <div className="product__info">
                         <div className="title">
                             <h1>{name}</h1>
-                            <span>{condition}</span>
+                            <span className='badge bg-success text-white'>{condition}</span>
+                            <span className='btn bg-danger ms-2 text-white' onClick={() => handleReport(product)}>report this item</span>
                         </div>
                         <div className="price">
                             $ <span>{resell_price}</span>

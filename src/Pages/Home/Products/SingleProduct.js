@@ -12,8 +12,9 @@ import { useQuery } from '@tanstack/react-query';
 
 const SingleProduct = ({ product }) => {
 
-    const { user } = useContext(AuthContext);
+    const { user, setBooking } = useContext(AuthContext);
     const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
+    const [show, setShow] = useState(false);
 
     const { data: seller, isLoading, refetch } = useQuery({
         queryKey: ['users'],
@@ -23,6 +24,13 @@ const SingleProduct = ({ product }) => {
             return data;
         }
     });
+
+    
+
+    const handleBooking = (product) => {
+        setShow(true);
+        setBooking(product)
+    }
 
 
     const handleWishlist = (id) => {
@@ -81,7 +89,9 @@ const SingleProduct = ({ product }) => {
                         <button className="product-btn">
                             <span className="price">${resell_price}</span>
                             <span className="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
-                            <span className="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span>
+                            {/* <span className="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span> */}
+                            <button className='btn buy' onClick={() => handleBooking(product)}>Get Now</button>
+
                         </button>
 
                     </div>
@@ -105,25 +115,13 @@ const SingleProduct = ({ product }) => {
             </div>
             {/* ********************* modal ******************************* */}
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">{name}</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            ...
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ConfirmationModal
+                show={show}
+                setShow={setShow}
+            ></ConfirmationModal>
 
             {/* ********************* modal ******************************* */}
+
         </div>
     );
 };

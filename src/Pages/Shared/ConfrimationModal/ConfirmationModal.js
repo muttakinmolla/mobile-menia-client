@@ -45,7 +45,7 @@ const ConfirmationModal = ({ show, setShow }) => {
         console.log(order);
 
 
-        fetch('http://localhost:5000/order', {
+        fetch('https://bike-picker-server.vercel.app/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -64,7 +64,7 @@ const ConfirmationModal = ({ show, setShow }) => {
     }
 
     const handleProductStatusUpdate = id => {
-        fetch(`http://localhost:5000/product/status/${id}`, {
+        fetch(`https://bike-picker-server.vercel.app/product/status/${id}`, {
             method: 'PUT'
         })
             .then(res => res.json())

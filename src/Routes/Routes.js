@@ -35,12 +35,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/products/category/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/products/category/${params.id}`),
+                loader: ({ params }) => fetch(`https://bike-picker-server.vercel.app/products/category/${params.id}`),
                 element: <Categories></Categories>
             },
             {
                 path: '/product/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+                loader: ({ params }) => fetch(`https://bike-picker-server.vercel.app/product/${params.id}`),
                 element: <ProductDetails></ProductDetails>
             },
             {

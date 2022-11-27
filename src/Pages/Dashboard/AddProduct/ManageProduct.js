@@ -11,7 +11,7 @@ const ManageProduct = () => {
     const { data: products, isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allProduct?email=${user?.email}`, {
+            const res = await fetch(`https://bike-picker-server.vercel.app/allProduct?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

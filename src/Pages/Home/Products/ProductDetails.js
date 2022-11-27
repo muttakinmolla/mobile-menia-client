@@ -22,7 +22,7 @@ const ProductDetails = () => {
     };
 
     const handleReport = (product) => {
-        fetch('http://localhost:5000/report', {
+        fetch('https://bike-picker-server.vercel.app/report', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

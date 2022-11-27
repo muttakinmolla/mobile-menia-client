@@ -11,7 +11,7 @@ const MyBuyer = () => {
     const { data: reports, isLoading } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/buyer?email=${user?.email}`, {
+            const res = await fetch(`https://bike-picker-server.vercel.app/buyer?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

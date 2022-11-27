@@ -11,7 +11,7 @@ const AddCategory = () => {
     const { data: categories, isLoading, refetch } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories')
+            const res = await fetch('https://bike-picker-server.vercel.app/categories')
             const data = await res.json();
             return data;
         }
@@ -26,7 +26,7 @@ const AddCategory = () => {
         }
         console.log(category);
 
-        fetch('http://localhost:5000/addCategory', {
+        fetch('https://bike-picker-server.vercel.app/addCategory', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -41,6 +41,22 @@ const AddCategory = () => {
                     refetch();
                 }
 
+            })
+    };
+
+    const handleDelteUser = (id) => {
+        fetch(`http://localhost:5000/category/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('category deleted successfully');
+                    refetch();
+                }
             })
     }
     if (isLoading) {
@@ -77,7 +93,7 @@ const AddCategory = () => {
                                     <th scope="row">{index + 1}</th>
                                     <td>{category.name}</td>
                                     <td>
-                                        <FontAwesomeIcon className='text-danger' icon={faTrash}>
+                                        <FontAwesomeIcon className='text-danger' onClick={() => handleDelteUser(category._id)} icon={faTrash}>
 
                                         </FontAwesomeIcon>
                                     </td>

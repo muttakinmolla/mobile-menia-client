@@ -19,7 +19,7 @@ const SingleProduct = ({ product }) => {
     const { data: seller, isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/verifiedUser/${email}`,)
+            const res = await fetch(`https://bike-picker-server.vercel.app/verifiedUser/${email}`,)
             const data = await res.json();
             return data;
         }
@@ -47,7 +47,7 @@ const SingleProduct = ({ product }) => {
                 original_price,
                 resell_price
             }
-            fetch('http://localhost:5000/wishlist', {
+            fetch('https://bike-picker-server.vercel.app/wishlist', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

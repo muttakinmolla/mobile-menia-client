@@ -8,6 +8,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyWishlist from "../Pages/Dashboard/MyWishlist/MyWishlist";
+import ReportItem from "../Pages/Dashboard/ReportItem/ReportItem";
 import DisplayError from "../Pages/DisplayError/DisplayError";
 import Home from "../Pages/Home/Home/Home";
 import ProductDetails from "../Pages/Home/Products/ProductDetails";
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allUsers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: '/dashboard/allReport',
+                element: <AdminRoute><ReportItem></ReportItem></AdminRoute>
             },
             // =============================================== admin route end from here =====================================
 

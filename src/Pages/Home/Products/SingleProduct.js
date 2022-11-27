@@ -86,7 +86,7 @@ const SingleProduct = ({ product }) => {
                     <p className="information">Contact : {mobile}  </p>
                     <p className="information">Condition : {condition}  </p>
                     <div className="d-flex justify-content-center">
-                        <span className="btn primary-bg text-white"><Link className='text-white get-now' to={`/product/${_id}`}>SEE DETAILS</Link></span>
+                        <span className="btn primary-bg text-white"><Link className='see-more' to={`/product/${_id}`}>SEE DETAILS</Link></span>
                     </div>
                     <div className="product-control">
 

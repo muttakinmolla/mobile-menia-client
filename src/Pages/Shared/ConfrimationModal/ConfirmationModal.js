@@ -21,6 +21,7 @@ const ConfirmationModal = ({ show, setShow }) => {
         const product_id = _id;
         const buyer_name = user?.displayName;
         const buyer_email = user?.email;
+        const seller_email = email;
         const product_name = name;
         const buyer_mobile = form.buyer_mobile.value;
         const seller_mobile = mobile;
@@ -31,6 +32,7 @@ const ConfirmationModal = ({ show, setShow }) => {
             product_id,
             buyer_name,
             seller_name,
+            seller_email,
             image,
             buyer_email,
             resell_price,
@@ -54,12 +56,25 @@ const ConfirmationModal = ({ show, setShow }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    handleClose();
-                    toast.success('Order submit successfully');
-                    navigate('/')
+                    handleProductStatusUpdate(product_id)
+
                 }
             })
 
+    }
+
+    const handleProductStatusUpdate = id => {
+        fetch(`http://localhost:5000/product/status/${id}`, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    handleClose();
+                    toast.success('Order submit successfully');
+                    navigate('/');
+                }
+            })
     }
 
     return (

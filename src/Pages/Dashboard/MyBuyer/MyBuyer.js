@@ -5,13 +5,13 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import Loader from '../../Shared/Loader/Loader';
 
-const ReportItem = () => {
+const MyBuyer = () => {
     const { user } = useContext(AuthContext);
 
     const { data: reports, isLoading } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/report?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/buyer?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -23,11 +23,10 @@ const ReportItem = () => {
     if (isLoading) {
         return <Loader></Loader>
     }
-
     return (
         <div>
             <div className='w-25 primary-bg mt-2 p-2 rounded text-center m-auto'>
-                <h4>All  reported Product</h4>
+                <h4>My All Buyer</h4>
             </div>
 
             <div>
@@ -74,4 +73,4 @@ const ReportItem = () => {
     );
 };
 
-export default ReportItem;
+export default MyBuyer;

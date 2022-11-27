@@ -6,6 +6,7 @@ import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import ManageProduct from "../Pages/Dashboard/AddProduct/ManageProduct";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import MyBuyer from "../Pages/Dashboard/MyBuyer/MyBuyer";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyWishlist from "../Pages/Dashboard/MyWishlist/MyWishlist";
 import ReportItem from "../Pages/Dashboard/ReportItem/ReportItem";
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allProduct',
                 element: <SellerRoute><ManageProduct></ManageProduct></SellerRoute>
+            },
+            {
+                path: '/dashboard/myBuyer',
+                element: <SellerRoute><MyBuyer></MyBuyer></SellerRoute>
             },
             // =============================================== seller route end from here =====================================
 

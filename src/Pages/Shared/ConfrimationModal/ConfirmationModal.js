@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const ConfirmationModal = ({ show, setShow }) => {
@@ -112,7 +112,7 @@ const ConfirmationModal = ({ show, setShow }) => {
                                     </Button>
                                 </div>
                             </form> :
-                            <p>Please Login for order this product</p>
+                            <p>Please Login <Link to='/login'>LOGIN</Link> for order this product</p>
                     }
 
                 </Modal.Body>

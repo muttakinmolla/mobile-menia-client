@@ -1,68 +1,71 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import ConfirmationModal from '../../Shared/ConfrimationModal/ConfirmationModal';
 import Loader from '../../Shared/Loader/Loader';
 
 const ProductDetails = () => {
-    const { user } = useContext(AuthContext);
+    const { user, setBooking } = useContext(AuthContext);
     const product = useLoaderData();
     const { _id, name, seller_name, email, category, resell_price, condition, mobile, location, purchase_year, posted_time, description, original_price, image } = product;
-    const navigate = useNavigate();
+
+    const [show, setShow] = useState(false);
 
 
-    const handleOrder = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const product_id = _id;
-        const buyer_name = user?.displayName;
-        const buyer_email = user?.email;
-        const product_name = name;
-        const buyer_mobile = form.buyer_mobile.value;
-        const seller_mobile = mobile;
-        const meting_location = form.meting_location.value;
-        const opinion = form.opinion.value;
+    // const handleOrder = (e) => {
+    //     e.preventDefault();
+    //     const form = e.target;
+    //     const product_id = _id;
+    //     const buyer_name = user?.displayName;
+    //     const buyer_email = user?.email;
+    //     const product_name = name;
+    //     const buyer_mobile = form.buyer_mobile.value;
+    //     const seller_mobile = mobile;
+    //     const meting_location = form.meting_location.value;
+    //     const opinion = form.opinion.value;
 
-        const order = {
-            product_id,
-            buyer_name,
-            seller_name,
-            image,
-            buyer_email,
-            resell_price,
-            product_name,
-            buyer_mobile,
-            seller_mobile,
-            meting_location,
-            opinion
-        }
-        console.log(order);
+    //     const order = {
+    //         product_id,
+    //         buyer_name,
+    //         seller_name,
+    //         image,
+    //         buyer_email,
+    //         resell_price,
+    //         product_name,
+    //         buyer_mobile,
+    //         seller_mobile,
+    //         meting_location,
+    //         opinion
+    //     }
+    //     console.log(order);
 
-        fetch('http://localhost:5000/order', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(order)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.acknowledged) {
+    //     fetch('http://localhost:5000/order', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(order)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data);
+    //             if (data.acknowledged) {
 
-                    toast.success('Order submit successfully');
-                    navigate('/')
-                }
-            })
+    //                 toast.success('Order submit successfully');
+    //                 navigate('/')
+    //             }
+    //         })
 
+    // }
+    const handleBooking = (product) => {
+        setShow(true);
+        setBooking(product)
     }
 
-    // if (!user) {
-    //     return <Loader></Loader>
-    // }
     return (
         <div className='container'>
-            <div className='w-50 m-auto'>
+            {/* <div className='w-50 m-auto'>
                 <h1 className=''>Order {name} now</h1>
             </div>
             <div className="row">
@@ -137,7 +140,72 @@ const ProductDetails = () => {
                             <p>Please Login for order this product</p>
                     }
                 </div>
+            </div> */}
+
+            {/********************************************** ***************************************************/}
+
+            <div className="body">
+                <section className="product">
+                    <div className="product__photo">
+                        <div className="photo-container">
+                            <div className="photo-main">
+                                <div className="controls">
+                                    <i className="material-icons">share</i>
+                                    <i className="material-icons">favorite_border</i>
+                                </div>
+                                <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice" />
+                            </div>
+                            <div className="photo-album">
+                                <ul>
+                                    <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple" /></li>
+                                    <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303532/codepen/delicious-apples/half-apple.png" alt="half apple" /></li>
+                                    <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303160/codepen/delicious-apples/green-apple-flipped.png" alt="green apple" /></li>
+                                    <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png" alt="apple top" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="product__info">
+                        <div className="title">
+                            <h1>Delicious Apples</h1>
+                            <span>COD: 45999</span>
+                        </div>
+                        <div className="price">
+                            R$ <span>7.93</span>
+                        </div>
+                        <div className="variant">
+                            <h3>SELECT A COLOR</h3>
+                            <ul>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple" /></li>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" alt="yellow apple" /></li>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="orange apple" /></li>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="red apple" /></li>
+                            </ul>
+                        </div>
+                        <div className="description">
+                            <h3>BENEFITS</h3>
+                            <ul>
+                                <li>Apples are nutricious</li>
+                                <li>Apples may be good for weight loss</li>
+                                <li>Apples may be good for bone health</li>
+                                <li>They're linked to a lowest risk of diabetes</li>
+                            </ul>
+                        </div>
+                        <button className="buy--btn" onClick={() => handleBooking(product)}>ADD TO CART</button>
+                    </div>
+                </section>
             </div>
+
+            {/********************************************** ***************************************************/}
+
+            {/* ********************* modal ******************************* */}
+
+            <ConfirmationModal
+                show={show}
+                setShow={setShow}
+            ></ConfirmationModal>
+
+            {/* ********************* modal ******************************* */}
         </div>
     );
 };

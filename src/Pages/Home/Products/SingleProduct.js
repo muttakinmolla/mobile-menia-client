@@ -76,45 +76,47 @@ const SingleProduct = ({ product }) => {
     }
     return (
         <div className="col-lg-6 col-md-6 mb-5">
-            <Link className='product-link' to={`/product/${_id}`}>
-                <div id="product-container">
-                    <div className="product-details">
-                        <h1 className='text-center'>{name}</h1>
-                        <p className="information">Name : {seller_name} {seller?.isVerified === 'verify' && <span className='ms-4'>
-                            <img src={verify} className="verify" alt="" /></span>}  </p>
-                        <p className="information">Location : {location}  </p>
-                        <p className="information">Contact : {mobile}  </p>
-                        <p className="information">Condition : {condition}  </p>
-                        <div className="product-control">
 
-                            <button className="product-btn">
-                                <span className="price">${resell_price}</span>
-                                <span className="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
-                                {/* <span className="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span> */}
-                                <button className='btn buy' onClick={() => handleBooking(product)}>Get Now</button>
+            <div id="product-container">
+                <div className="product-details">
+                    <h1 className='text-center'>{name}</h1>
+                    <p className="information">Name : {seller_name} {seller?.isVerified === 'verify' && <span className='ms-4'>
+                        <img src={verify} className="verify" alt="" /></span>}  </p>
+                    <p className="information">Location : {location}  </p>
+                    <p className="information">Contact : {mobile}  </p>
+                    <p className="information">Condition : {condition}  </p>
+                    <div className="d-flex justify-content-center">
+                        <span className="btn primary-bg text-white"><Link className='text-white get-now' to={`/product/${_id}`}>SEE DETAILS</Link></span>
+                    </div>
+                    <div className="product-control">
 
-                            </button>
+                        <button className="product-btn">
+                            <span className="price">${resell_price}</span>
+                            <span className="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
 
-                        </div>
+                            <button className='btn buy' onClick={() => handleBooking(product)}>Get Now</button>
+
+                        </button>
 
                     </div>
 
-                    <div className="product-image">
+                </div>
 
-                        <img src={image} alt="" />
+                <div className="product-image">
 
-                        <div className="info">
-                            <h2> Description</h2>
-                            <ul>
-                                <li><strong>purchase_year : </strong> {purchase_year} </li>
-                                <li><strong>Name : </strong>{seller_name}</li>
-                                <li><strong>Mobile: </strong>{mobile}</li>
+                    <img src={image} alt="" />
 
-                            </ul>
-                        </div>
+                    <div className="info">
+                        <h2> Description</h2>
+                        <ul>
+                            <li><strong>purchase_year : </strong> {purchase_year} </li>
+                            <li><strong>Name : </strong>{seller_name}</li>
+                            <li><strong>Mobile: </strong>{mobile}</li>
+
+                        </ul>
                     </div>
                 </div>
-            </Link>
+            </div>
             {/* ********************* modal ******************************* */}
 
             <ConfirmationModal

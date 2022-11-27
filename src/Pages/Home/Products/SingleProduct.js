@@ -76,14 +76,14 @@ const SingleProduct = ({ product }) => {
 
             <div id="product-container">
                 <div className="product-details">
-                    <div type="button" class=" position-relative">
+                    <div type="button" className=" position-relative">
                         <h2 className='text-center'>{name}</h2>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                            {status === 'inStock' && 'Available'}
-                            {/* <span className='badge bg-primary text-size "visually-hidden'>{status === 'inStock' && 'Available'}</span> */}
+
+                        <span className={`position-absolute top-0 start-100 translate-middle badge rounded-pill ${status === 'inStock' ? "bg-primary" : "bg-danger"}`}>
+                            {status === 'inStock' ? 'Available' : 'Sold Out'}
+
                         </span>
                     </div>
-                    {/* <h2 className='text-center'>{name}</h2> <span className='badge bg-primary text-size'>{status === 'inStock' && 'Available'}</span> */}
                     <p className="information">Name : {seller_name} {seller?.isVerified === 'verify' && <span className='ms-4'>
                         <img src={verify} className="verify" alt="" /></span>}  </p>
                     <p className="information">Location : {location}  </p>

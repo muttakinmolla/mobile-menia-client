@@ -66,7 +66,8 @@ const AddProduct = () => {
                         posted_time: posted_time,
                         description: description,
                         original_price: original_price,
-                        image: imgData.data.url
+                        image: imgData.data.url,
+                        status: 'inStock'
                     }
 
                     fetch('http://localhost:5000/addProduct', {

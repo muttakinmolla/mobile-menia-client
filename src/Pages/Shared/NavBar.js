@@ -47,9 +47,6 @@ const NavBar = () => {
                             {
                                 user?.uid ?
                                     <>
-                                        <li className="nav-item">
-                                            <Link className="nav-link text-white" to="/dashboard">Dashboard</Link>
-                                        </li>
                                         <li className="nav-item dropdown">
                                             <Link className="nav-link dropdown-toggle text-white" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {user?.displayName}

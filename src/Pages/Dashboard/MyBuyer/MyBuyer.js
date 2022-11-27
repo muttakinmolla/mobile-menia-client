@@ -8,8 +8,8 @@ import Loader from '../../Shared/Loader/Loader';
 const MyBuyer = () => {
     const { user } = useContext(AuthContext);
 
-    const { data: reports, isLoading } = useQuery({
-        queryKey: ['reports'],
+    const { data: buyers, isLoading } = useQuery({
+        queryKey: ['buyers'],
         queryFn: async () => {
             const res = await fetch(`https://bike-picker-server.vercel.app/buyer?email=${user?.email}`, {
                 headers: {
@@ -36,29 +36,25 @@ const MyBuyer = () => {
                             <th scope="col">Sl.</th>
                             <th scope="col">Name</th>
                             <th scope="col">Image</th>
-                            <th scope="col">category</th>
-                            <th scope="col">resell Price</th>
-                            <th scope="col">original price</th>
-                            <th scope="col">condition</th>
-                            <th scope="col">posted time</th>
+                            <th scope="col">Buyer Mobile</th>
+                            <th scope="col">Meat Location</th>
+                            <th scope="col">Product</th>
                             <th scope="col">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            reports?.map((product, index) => <tr className='text-center' key={index}>
+                            buyers?.map((buyer, index) => <tr className='text-center' key={index}>
                                 <th scope="row">{index + 1}</th>
                                 <td>
-                                    {product.name}
+                                    {buyer.buyer_name}
                                 </td>
                                 <td>
-                                    <img className='image' src={product.image} alt="" />
+                                    <img className='image' src={buyer.image} alt="" />
                                 </td>
-                                <td>{product.category}</td>
-                                <td>{product.resell_price}</td>
-                                <td>{product.original_price}</td>
-                                <td>{product.condition}</td>
-                                <td>{product.posted_time}</td>
+                                <td>{buyer.buyer_mobile}</td>
+                                <td>{buyer.meting_location}</td>
+                                <td>{buyer.product_name}</td>
                                 <td>
                                     <FontAwesomeIcon className='text-danger' icon={faTrash}>
 

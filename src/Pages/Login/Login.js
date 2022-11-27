@@ -21,14 +21,10 @@ const Login = () => {
         googleSignIn(googleProvider)
             .then(result => {
                 const user = result.user;
-                const currentUser = {
-                    name: user.displayName,
-                    email: user.email,
-                    userType: 'buyer',
-                }
+
                 const userType = 'buyer';
 
-                getUserToken(user.email);
+                saveUser(user.displayName, user.email, userType);
 
                 setError('');
                 toast.success('successfully login');
@@ -57,7 +53,29 @@ const Login = () => {
                 setError(error.message)
             })
 
+    };
+
+    const saveUser = (name, email, userType) => {
+        const user = { name, email, userType }
+        fetch('https://bike-picker-server.vercel.app/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                getUserToken(email)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
+;
+
+
     const getUserToken = (email) => {
         fetch(`https://bike-picker-server.vercel.app/jwt?email=${email}`)
             .then(res => res.json())

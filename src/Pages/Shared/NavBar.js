@@ -55,7 +55,6 @@ const NavBar = () => {
                                                 <li><Link className="dropdown-item" to="dashboard">Dashboard</Link></li>
                                                 <li><button className="dropdown-item" onClick={handleLogOut} to="/">Logout</button></li>
                                                 <li><hr className="dropdown-divider" /></li>
-                                                <li><Link className="dropdown-item" to="/">Something else here</Link></li>
                                             </ul>
                                         </li>
                                     </>

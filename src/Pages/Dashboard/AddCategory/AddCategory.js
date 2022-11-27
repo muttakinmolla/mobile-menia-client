@@ -45,7 +45,7 @@ const AddCategory = () => {
     };
 
     const handleDelteUser = (id) => {
-        fetch(`http://localhost:5000/category/${id}`, {
+        fetch(`https://bike-picker-server.vercel.app/category/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

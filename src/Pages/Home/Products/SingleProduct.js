@@ -25,7 +25,7 @@ const SingleProduct = ({ product }) => {
         }
     });
 
-    
+
 
     const handleBooking = (product) => {
         setShow(true);
@@ -76,43 +76,45 @@ const SingleProduct = ({ product }) => {
     }
     return (
         <div className="col-lg-6 col-md-6 mb-5">
-            <div id="product-container">
-                <div className="product-details">
-                    <h1 className='text-center'>{name}</h1>
-                    <p className="information">Name : {seller_name} {seller?.isVerified === 'verify' && <span className='ms-4'>
-                        <img src={verify} className="verify" alt="" /></span>}  </p>
-                    <p className="information">Location : {location}  </p>
-                    <p className="information">Contact : {mobile}  </p>
-                    <p className="information">Condition : {condition}  </p>
-                    <div className="product-control">
+            <Link className='product-link' to={`/product/${_id}`}>
+                <div id="product-container">
+                    <div className="product-details">
+                        <h1 className='text-center'>{name}</h1>
+                        <p className="information">Name : {seller_name} {seller?.isVerified === 'verify' && <span className='ms-4'>
+                            <img src={verify} className="verify" alt="" /></span>}  </p>
+                        <p className="information">Location : {location}  </p>
+                        <p className="information">Contact : {mobile}  </p>
+                        <p className="information">Condition : {condition}  </p>
+                        <div className="product-control">
 
-                        <button className="product-btn">
-                            <span className="price">${resell_price}</span>
-                            <span className="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
-                            {/* <span className="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span> */}
-                            <button className='btn buy' onClick={() => handleBooking(product)}>Get Now</button>
+                            <button className="product-btn">
+                                <span className="price">${resell_price}</span>
+                                <span className="shopping-cart" onClick={() => handleWishlist(_id)}><FontAwesomeIcon icon={faShoppingCart} className='text-danger'></FontAwesomeIcon></span>
+                                {/* <span className="buy"><Link className='get-now' to={`/product/${_id}`}>Get now</Link></span> */}
+                                <button className='btn buy' onClick={() => handleBooking(product)}>Get Now</button>
 
-                        </button>
+                            </button>
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <div className="product-image">
 
-                <div className="product-image">
+                        <img src={image} alt="" />
 
-                    <img src={image} alt="" />
+                        <div className="info">
+                            <h2> Description</h2>
+                            <ul>
+                                <li><strong>purchase_year : </strong> {purchase_year} </li>
+                                <li><strong>Name : </strong>{seller_name}</li>
+                                <li><strong>Mobile: </strong>{mobile}</li>
 
-                    <div className="info">
-                        <h2> Description</h2>
-                        <ul>
-                            <li><strong>purchase_year : </strong> {purchase_year} </li>
-                            <li><strong>Name : </strong>{seller_name}</li>
-                            <li><strong>Mobile: </strong>{mobile}</li>
-
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Link>
             {/* ********************* modal ******************************* */}
 
             <ConfirmationModal

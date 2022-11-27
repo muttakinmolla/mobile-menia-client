@@ -69,3 +69,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # b612-used-products-resale-clients-side-muttakinmolla
+
+
+### I have used this technology fails to minify ==============================================
+
+### `bootstrap -5 and reactBootstrap`
+use for ui library
+
+### `firebase`
+firebase use for authentication and user management
+
+### `react hot toast`
+react hot toast use for show message which is could be success or error
+
+
+### `Live website link`
+https://bike-picker-a5c63.web.app/
+
+### `Develop and Design`
+Md. Muttakin Molla
+
+### `Admin email and password`
+admin@gmail.com
+123456
+
+### `seller email and password`
+saif@gmail.com
+123456
+
+### `buyer email and password`
+masud@gmail.com
+123456

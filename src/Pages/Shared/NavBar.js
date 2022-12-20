@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import './NavBar.css';
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { useQuery } from '@tanstack/react-query';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -12,6 +13,17 @@ const NavBar = () => {
             .then(() => { })
             .then(error => console.log(error))
     }
+
+    const { data: products, isLoading, refetch } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await fetch(`https://bike-picker-server.vercel.app/myOrder?email=${user?.email}`)
+            const data = await res.json();
+            console.log(data)
+            return data;
+        }
+    })
+
     return (
         <div className='nav-bar'>
             <nav className="container navbar navbar-expand-lg navbar-light ">
@@ -34,7 +46,9 @@ const NavBar = () => {
 
                                 </FontAwesomeIcon>
                                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    99+
+                                    {products ? products.length + '+' : '0'}
+
+
                                     <span className="visually-hidden">unread messages</span>
                                 </span>
                             </Link>
